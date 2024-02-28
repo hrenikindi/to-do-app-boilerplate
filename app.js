@@ -1,5 +1,5 @@
 
-var listOfActivities = [];
+var tasks = [];
 
 var input = document.getElementById("input");
 
@@ -10,21 +10,21 @@ document.getElementById("button").onclick = click;
 
 function click() {
 
-  listOfActivities.push(input.value);
-  console.log(listOfActivities);
+  tasks.push(input.value);
+  console.log(tasks);
   input.value = "";
 
-  showList();
+  display();
 }
 
-function showList() {
+function display() {
   todolist.innerHTML = " ";
 
-  listOfActivities.forEach(function (n, i) {
+  tasks.forEach(function (n, i) {
     todolist.innerHTML +=
       "<li>" +
       n +
-      "<a onclick='editItem(" +
+      "<a onclick='edit(" +
       i +
       ")'>Edit</a>" +
       "<a onclick='deleteItem(" +
@@ -35,13 +35,13 @@ function showList() {
 
 
 function deleteItem(i) {
-  listOfActivities.splice(i, 1);
-  showList();
+  tasks.splice(i, 1);
+  display();
 }
 
-function editItem(i) {
+function edit(i) {
 
-  var newValue = prompt("Please insert your new value");
-  listOfActivities.splice(i, 1, newValue);
-  showList();
+  var newValue = prompt("Add new task!");
+  tasks.splice(i, 1, newValue);
+  display();
 }
